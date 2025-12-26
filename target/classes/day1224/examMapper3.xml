@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="day1224">
+
+<!-- 컬럼하나에 현행 조회 -->
+
+<select id="scsr" parameterType="int" resultType="String">
+    select dname
+    from dept
+    where deptno = #{deptno}
+</select>
+
+<!-- 컬럼 여러개 현행 조회 -->
+<!-- 컬럼 하나에 여러행 조회 -->
+<!-- 컬럼 여러개 여러행 조회 -->
+ <!-- like -->
+ <!-- < 작다-->
+ <!-- > 크다 -->
+ <!-- subquery -->
+ <!-- union -->
+ <!-- subquery & join -->
+ <!-- Dynamic query : if -->
+ <!-- Dynamic query : choose -->
+ <!-- Dynamic query : forEach -->
+ <!-- Dynamic query : set -->
+ <!-- PL/SQL insert -->
+ <!-- PL/SQL update -->
+ <!-- PL/SQL delete -->
+ <!-- PL/SQL cursor -->
+
+</mapper>

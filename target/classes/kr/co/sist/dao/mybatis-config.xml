@@ -18,7 +18,9 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="day1223/examMapper.xml"/>
+    <mapper resource="day1223/examMapper.xml"/><!-- insert 연습 -->
+    <mapper resource="day1224/examMapper2.xml"/><!-- update, delete 연습 -->
+    <mapper resource="day1224/examMapper3.xml"/><!-- update, delete 연습 -->
     <mapper resource="day1219/dept.xml"/>
     <mapper resource="kr/co/sist/board/boardMapper.xml"/>
   </mappers>

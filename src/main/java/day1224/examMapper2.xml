@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="day1224">
+   <!-- update 외부 값을 사용하지 않고 ParameterType속성을 정의하지 않는다  
+    -->
+    <update id="updateNonParameter">
+    update	board
+    set	title='윤교수의 노애미학개론', content='모전자전', id='kim'
+    where	num=36
+    </update>
+    
+     <update id="updateParameter" parameterType="int">
+    update	board
+    set	title='남지우의 고추크기 폭로', content='작음', id='kim'
+    where	num=#{num}
+    </update>
+    
+     <update id="updateCpDept" parameterType="day1219.DeptDTO">
+    update	cp_dept
+    set	dname=#{dname}, loc=#{loc}
+    where	deptno=#{deptno}
+    </update>
+    
+   <delete id="deleteCpDept">
+      delete from cp_dept where deptno=90
+   </delete>
+
+   <delete id="deleteCpDeptNo" parameterType="Integer">
+      delete from cp_dept where deptno=#{deptno}
+   </delete>
+ 
+ 
+</mapper>
