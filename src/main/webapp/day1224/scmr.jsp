@@ -1,8 +1,9 @@
+<%@page import="java.util.List"%>
 <%@page import="day1224.SelectService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<h3>컬럼하나에 한 행 조회</h3>
+<h3>컬럼하나에 여러행 조회</h3>
 <script type="text/javascript">
 $(function(){
 	$("#btn").click(function(){
@@ -21,15 +22,17 @@ $(function(){
 <%
 String deptno=request.getParameter("deptno");
 SelectService ss=SelectService.getInstance();
-String dname=ss.scsr( Integer.parseInt( deptno ));
-pageContext.setAttribute("dname",  dname);
+List<String> enameList=ss.scmr( Integer.parseInt( deptno ));
+pageContext.setAttribute("enameList",  enameList);
 %>
-<c:set var="msg" value="존재하지 않습니다."/>
-<c:if test="${ not empty dname }">
-<c:set var="msg" value="${ dname } 입니다."/>
+<c:out value="${ param.deptno }"/>번 부서 사원리스트<br>
+<c:forEach var="ename" items="${ enameList }" varStatus="i">
+<input type="checkbox" name="ename" value="${ ename }"/>
+<c:out value="${ i.count }"/>. <c:out value="${ ename }"/>  
+</c:forEach> 
+<c:if test="${ empty enameList }">
+<img src="images/na.jpg" style="width: 300px; height: 260px"/>
 </c:if>
-<c:out value="${ param.deptno }"/>번 부서는 
-<strong><c:out value="${ msg }"/></strong>
 
 </c:if>
 </div>

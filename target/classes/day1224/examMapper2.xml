@@ -3,33 +3,43 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="day1224">
-   <!-- update 외부 값을 사용하지 않고 ParameterType속성을 정의하지 않는다  
+  <!-- update 외부 값을 사용하지 않고( parameterType속성을 정의하지 않는다.)
+  		int cnt=SqlSession객체.update("아이디");
+   -->
+  <update id="updateNonParameter">
+  update	board
+  set		title='없음', content='없음', id='kim'
+  where		num=41
+  </update>
+  
+  <!-- 단일형 (기본형,Wrapper class )으로 입력 받을 때  -->
+  <update id="updateParameter" parameterType="int">
+  update	board
+  set		title='없음', content='없음', id='kim'
+  where		num=#{ num }
+  </update>
+  <!-- 복합형 ( DTO )으로 입력 받을 때
+  int cnt=SqlSession.update("아이디",DTO객체)
     -->
-    <update id="updateNonParameter">
-    update	board
-    set	title='윤교수의 노애미학개론', content='모전자전', id='kim'
-    where	num=36
-    </update>
-    
-     <update id="updateParameter" parameterType="int">
-    update	board
-    set	title='남지우의 고추크기 폭로', content='작음', id='kim'
-    where	num=#{num}
-    </update>
-    
-     <update id="updateCpDept" parameterType="day1219.DeptDTO">
-    update	cp_dept
-    set	dname=#{dname}, loc=#{loc}
-    where	deptno=#{deptno}
-    </update>
-    
-   <delete id="deleteCpDept">
-      delete from cp_dept where deptno=90
-   </delete>
-
-   <delete id="deleteCpDeptNo" parameterType="Integer">
-      delete from cp_dept where deptno=#{deptno}
-   </delete>
+  <update id="updateCpDept" parameterType="day1219.DeptDTO">
+  update	cp_dept
+  set		dname=#{ dname }, loc=#{ loc }
+  where		deptno=#{ deptno }
+  </update>
+ 
+ <!-- 삭제
+ 		int cnt=SqlSession객체.delete("아이디");
+  -->
+ <delete id="deleteCpDept">
+ 	delete from cp_dept where deptno=90
+ </delete>
+ 
+ <!-- 삭제 : parameterType에는 기본형사용가능, Wrapper class 사용가능
+ 		int cnt=SqlSession객체.delete("아이디",값);
+  -->
+ <delete id="deleteCpDeptNo" parameterType="Integer">
+ 	delete from cp_dept where deptno=#{ deptno }
+ </delete>
  
  
 </mapper>
