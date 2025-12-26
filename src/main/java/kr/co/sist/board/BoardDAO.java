@@ -22,7 +22,7 @@ public class BoardDAO {
 	}//BoardDAO
 	
 	public static BoardDAO getInstance() {
-	 	if( bDAO == null) {
+		if( bDAO == null) {
 			bDAO=new BoardDAO();
 		}//end if
 		return bDAO;
@@ -74,7 +74,7 @@ public class BoardDAO {
 	
 	public List<BoardDTO> selectRangeBoard(RangeDTO rDTO) throws SQLException {
 		List<BoardDTO> list=new ArrayList<BoardDTO>();
-//	
+	
 //		DbConn dbCon=DbConn.getInstance("jdbc/dbcp");
 //		
 //		Connection con=null;
@@ -134,15 +134,15 @@ public class BoardDAO {
 		return list;
 	}//selectRangeBoard
 	
-	public void insertBoard(BoardDTO bDTO) throws PersistenceException {
+	public void insertBoard(BoardDTO dDTO) throws PersistenceException {
+		//1.MyBatis Handler 얻기
+		SqlSession ss=MyBatisHandler.getInstance().getMyBatisHandler(true);
+		//2.쿼리문 수행 후 결과 얻기
+		ss.insert("kr.co.sist.board.insertBoard", dDTO);
+		//3.결과 작업
+		//4.MyBatis Handler 닫기
+		if(ss !=null) {ss.close();}
 		
-		SqlSession ss = MyBatisHandler.getInstance().getMyBatisHandler(true);
-		
-		ss.insert("kr.co.sist.board.insertBoard",bDTO);
-		
-		
-		if(ss!=null) {ss.close();}
-	
 	}// insertBoard
 	
 	public BoardDTO selectBoardDetail(int num) throws SQLException{
@@ -200,7 +200,7 @@ public class BoardDAO {
 //			}//end if
 //		}finally {
 //		//7.연결끊기
-//		dbCon.dbClose(rs, pstmt, con);
+//			dbCon.dbClose(rs, pstmt, con);
 //		}//end finally
 		
 		return bDTO;
@@ -212,8 +212,8 @@ public class BoardDAO {
 	 * @throws SQLException
 	 */
 	public void updateBoardCnt(int num) throws SQLException{
-		//DbConn dbCon = DbConn.getInstance("jdbc/dbcp");
-		
+//		DbConn dbCon = DbConn.getInstance("jdbc/dbcp");
+//		
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
 //		
@@ -239,10 +239,10 @@ public class BoardDAO {
 //		//7.연결끊기
 //			dbCon.dbClose(null, pstmt, con);
 //		}//end finally
-}//selectBoardTotalCnt
-//	
+	}//selectBoardTotalCnt
+	
 	public int updateBoard(BoardDTO dDTO) throws SQLException {
-	int cnt = 0;
+		int cnt = 0;
 //		DbConn dbCon=DbConn.getInstance("jdbc/dbcp");
 //		
 //		Connection con = null;
@@ -280,8 +280,8 @@ public class BoardDAO {
 	
 	public int deleteBoard(BoardDTO dDTO) throws SQLException {
 		int cnt = 0;
-		//DbConn dbCon=DbConn.getInstance("jdbc/dbcp");
-		
+//		DbConn dbCon=DbConn.getInstance("jdbc/dbcp");
+//		
 //		Connection con = null;
 //		PreparedStatement pstmt = null;
 //		
@@ -308,7 +308,7 @@ public class BoardDAO {
 //			//7.연결끊기
 //			dbCon.dbClose(null, pstmt, con);
 //		}//end finally
-//		
+		
 		return cnt;
 	}// deleteBoared
 }//class

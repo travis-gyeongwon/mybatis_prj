@@ -3,11 +3,11 @@
 	<Properties>    	
     	<property name="LOGS_PATH">c:/dev/mybatis/log</property>
 	</Properties>
-  <Appenders>
-    <Console name="console" target="SYSTEM_OUT">
-        <!-- <PatternLayout pattern="[%d{yyyy-MM-dd hh:mm:ss}] [%5p] [%c] [%m]%n"/> -->
-        <PatternLayout pattern="%d{yyyy-MM-dd hh:mm:ss} %5p %c %m%n"/>
-    </Console>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <!-- <PatternLayout pattern="[%d{yyyy-MM-dd hh:mm:ss}] [%5p] [%c]  [%m]%n"/> -->
+            <PatternLayout pattern="[%d{MM-dd-yyyy a hh:mm:ss}] [%5p] [%c] [%m] %n"/>
+        </Console>
           <RollingFile name ="RollingFile">
             <FileName>${LOGS_PATH}/mybatis.log</FileName>
             <FilePattern>${LOGS_PATH}/mybatis.%d{yyyy-MM-dd}.%i.log.gz</FilePattern>

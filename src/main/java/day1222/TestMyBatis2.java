@@ -12,17 +12,15 @@ public class TestMyBatis2 {
 	public static void main(String[] args) {
 
 		//1. MyBatis Handler 얻기
-		SqlSession ss = MyBatisHandler.getInstance().getMyBatisHandler(false);
-		//2. 사용할 쿼리문(mapper.xml)을 찾아서 실행
+		SqlSession ss=MyBatisHandler.getInstance().getMyBatisHandler(false);
+		//2. 사용할 쿼리문(mapper.xml)을 찾아서 실행, 결과 얻기
 		List<DeptDTO> list=ss.selectList("day1219.selectDept");
 		//3. 결과 얻기
-		for(DeptDTO dd : list) {
-			System.out.println(dd.getDeptno()+" / "+dd.getDname()+" / "+dd.getLoc()+" / ");
-		}
-		
+		for( DeptDTO dd : list) {
+			System.out.println(dd.getDeptno()+" / "+ dd.getDname()+" / "+dd.getLoc());
+		}//end for
 		//4. MyBatis Handler 닫기
-		if(ss!=null) {ss.close();}
-		
+		if(ss!=null) { ss.close(); }//end if
 	}//main
 
 }//class

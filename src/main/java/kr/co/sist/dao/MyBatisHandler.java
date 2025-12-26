@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MyBatisHandler {
-
 	private static MyBatisHandler mbh;
 	
 	private static SqlSessionFactory ssf;
@@ -20,42 +19,44 @@ public class MyBatisHandler {
 	
 	public static MyBatisHandler getInstance() {
 		if(mbh==null) {
-			mbh= new MyBatisHandler();
+			mbh=new MyBatisHandler();
 		}//end if
 		return mbh;
 	}//getInstance
 	
 	private static SqlSessionFactory getSessionFactory() throws IOException {
 		if(ssf==null) {
-			//1. 설정용 XML과 연결
-			Reader reader = 
-					Resources.getResourceAsReader("kr/co/sist/dao/mybatis-config.xml");
-			//2. SqlSessionFactoryBuild 생성
+			//1.설정용 XML과 연결
+			Reader reader=
+				Resources.getResourceAsReader("kr/co/sist/dao/mybatis-config.xml");
+			//2.SqlSessionFactoryBuild 생성
 			SqlSessionFactoryBuilder ssfb = new SqlSessionFactoryBuilder();
-			//3. SqlSessionFactory를 Building 한단
+			//3.SqlSessioinFactory를 building 한다.
 			ssf=ssfb.build(reader);
+			
 			if(reader!=null) {
 				reader.close();
-			}
+			}//end if
 		}//end if
 		return ssf;
-	}//getSessionFactory
+	}//getSessFactory
 	
 	/**
-	 * MyBatis Handler 얻기
+	 * MyBatis Handler얻기
 	 * @param autoCommitFlag true-autocommit, false-non autocommit
 	 * @return
 	 */
-	public SqlSession getMyBatisHandler(boolean autoCommitFlag) {
-		SqlSession ss = null;
+	public SqlSession getMyBatisHandler( boolean autoCommitFlag ) {
+		SqlSession ss=null;
 		
 		try {
 			ss=getSessionFactory().openSession(autoCommitFlag);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}//end catch
 		
 		return ss;
-	}//MyBatisHandler
+	}//getMyBatisHandler
+	
 	
 }//class

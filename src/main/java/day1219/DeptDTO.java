@@ -11,9 +11,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+
 public class DeptDTO {
-   private int deptno;
-   private String dname, loc;
-   
-  
+	//@Getter
+	private int deptno;
+	private String dname, loc;
+	
+	
+	
 }

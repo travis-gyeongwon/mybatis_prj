@@ -10,3 +10,4 @@ import lombok.ToString;
 public class UrlVO {
 	private String title,url;
 }
+ 

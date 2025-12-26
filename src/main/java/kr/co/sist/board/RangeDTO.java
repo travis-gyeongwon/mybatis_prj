@@ -6,11 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @ToString
+
 public class RangeDTO {
 	private int startNum,endNum; // 시작번호, 끝번호
 	private String field, keyword; // 검색 필드 1,2,3, 검색 값
@@ -19,7 +20,6 @@ public class RangeDTO {
 	private int currentPage = 1;
 	private int totalPage = 0;
 	
-
 	public String getFieldStr() {
 		String[] fieldTitle = {"title", "content", "id"};
 		int tempField = Integer.parseInt(field);
@@ -30,6 +30,5 @@ public class RangeDTO {
 		return fieldStr;
 	}
 
-
-
+	
 }

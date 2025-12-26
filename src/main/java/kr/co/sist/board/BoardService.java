@@ -3,8 +3,6 @@ package kr.co.sist.board;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.print.attribute.standard.PagesPerMinute;
-
 import org.apache.ibatis.exceptions.PersistenceException;
 
 public class BoardService {
@@ -17,7 +15,7 @@ public class BoardService {
 		if(bs== null) {
 			bs=new BoardService();
 		}//end if
- 		return bs;
+		return bs;
 	}//getInstance
 	
 	/**

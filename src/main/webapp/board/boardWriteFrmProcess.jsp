@@ -9,11 +9,12 @@ request.setCharacterEncoding("UTF-8");
 
 <jsp:useBean id="dDTO" class="kr.co.sist.board.BoardDTO" scope="page"/>
 <jsp:setProperty name="dDTO" property="*"/>
-
 <%
 // web parameter로 title, content 입력되고 그 외 IP-request내장객체, ID session에서 얻어야한다.
 dDTO.setIp(request.getRemoteAddr());
+dDTO.setId((String)session.getAttribute("userId"));
 dDTO.setId("kim");
+
 
 BoardService bs = BoardService.getInstance();
 boolean flag = bs.addBoard(dDTO);
